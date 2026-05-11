@@ -5,10 +5,10 @@ import { MessageSquare, Newspaper, AlertTriangle, Users, Plus, X, ArrowLeft, Cor
 import { useAuth, useUser } from '@clerk/nextjs';
 import dynamic from 'next/dynamic';
 
-// Ruta hacia tu supabaseClient
-import { supabase } from '../../utils/supabaseClient';
+// CORRECCIÓN APLICADA: Subimos 3 niveles para encontrar la carpeta utils
+import { supabase } from '../../../utils/supabaseClient';
 
-// CORRECCIÓN: Asegúrate de que el archivo en tu computadora se llame EXACTAMENTE "TiptapEditor.js" o "TiptapEditor.jsx" (con T y E mayúsculas).
+// Importamos el TiptapEditor dinámicamente
 const TiptapEditor = dynamic(() => import('../TiptapEditor'), {
   ssr: false,
   loading: () => (
