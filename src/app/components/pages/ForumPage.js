@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 // Ruta hacia tu supabaseClient
 import { supabase } from '../../utils/supabaseClient';
 
-// Importamos tu TiptapEditor dinámicamente
+// CORRECCIÓN: Asegúrate de que el archivo en tu computadora se llame EXACTAMENTE "TiptapEditor.js" o "TiptapEditor.jsx" (con T y E mayúsculas).
 const TiptapEditor = dynamic(() => import('../TiptapEditor'), {
   ssr: false,
   loading: () => (
@@ -189,7 +189,7 @@ function IndexView({ setView, isSignedIn, userId, user }) {
   );
 }
 
-// Fila de Categoría (Reemplaza los Link por botones onClick para no salir del SPA)
+// Fila de Categoría
 function CategoryRow({ cat, getIcon, setView }) {
   return (
     <div className="flex items-center p-5 hover:bg-white/5 transition-all group">
@@ -318,7 +318,7 @@ function ThreadView({ threadId, threadTitle, parentId, parentTitle, setView, isS
   return (
     <div className="animate-in fade-in zoom-in-95 duration-300">
       
-      {/* Navegación superior estilo Cubecraft (Migas de pan) */}
+      {/* Navegación superior */}
       <div className="flex items-center gap-2 mb-6 font-mono text-sm">
         <button onClick={() => setView({ current: 'index' })} className="text-purple-400 hover:text-[#39ff14]">Red</button>
         <span className="text-purple-700">/</span>
@@ -329,20 +329,17 @@ function ThreadView({ threadId, threadTitle, parentId, parentTitle, setView, isS
 
       {/* POST PRINCIPAL */}
       <div className="glass-panel border border-purple-500/30 rounded-xl overflow-hidden mb-6 flex flex-col md:flex-row">
-        {/* Columna de Perfil (Izquierda) */}
         <div className="bg-[#05000a] md:w-48 p-6 flex flex-col items-center border-b md:border-b-0 md:border-r border-purple-900/50">
           <img src={thread.profiles?.image_url || '/image_340025.png'} className="w-20 h-20 rounded shadow-[0_0_15px_rgba(138,43,226,0.3)] mb-3 object-cover" />
           <span className="font-bold text-[#39ff14] uppercase text-center text-sm">{thread.profiles?.username || 'Anónimo'}</span>
           <span className="text-[10px] text-purple-400 mt-1 bg-purple-900/30 px-2 py-1 rounded">{thread.profiles?.rank || 'Sobreviviente'}</span>
         </div>
         
-        {/* Contenido (Derecha) */}
         <div className="flex-1 p-6 bg-[#0d001a]/80">
           <div className="text-xs text-purple-500 border-b border-purple-900/30 pb-2 mb-4 font-mono flex justify-between">
             <span>{new Date(thread.created_at).toLocaleString()}</span>
             <span>#1</span>
           </div>
-          {/* Aquí inyectamos el HTML de Tiptap */}
           <div className="text-purple-100 prose prose-invert prose-p:my-2 prose-a:text-[#39ff14] max-w-none font-mono text-lg" dangerouslySetInnerHTML={{ __html: thread.content }}></div>
         </div>
       </div>
@@ -364,7 +361,7 @@ function ThreadView({ threadId, threadTitle, parentId, parentTitle, setView, isS
         </div>
       ))}
 
-      {/* CAJA DE RESPUESTA RAPIDA */}
+      {/* CAJA DE RESPUESTA RÁPIDA */}
       {isSignedIn ? (
         <div className="mt-10 border-t border-purple-500/50 pt-8">
           <div className="flex items-center gap-2 mb-4 text-[#39ff14] font-bold tracking-widest uppercase">
