@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --font-family-now: "NOW", sans-serif;
+  --font-family-vt323: "VT323", monospace;
+  /* Añadimos la animación personalizada al tema para usar animate-glitch */
+  --animate-glitch: glitch 0.2s ease-in-out infinite;
+}
+
+/* Forzar el fondo de galaxia y colores oscuros */
+@layer base {
+  body {
+    background: radial-gradient(ellipse at bottom, #2b004a 0%, #090011 100%) !important;
+    background-color: #090011 !important;
+    color: #e0e0e0 !important;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+}
+
+@utility glass-panel {
+  background: rgba(15, 5, 25, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+@utility neon-btn {
+  position: relative;
+  background: transparent;
+  color: #b05bff;
+  border: 1px solid #b05bff;
+  box-shadow: 0 0 10px rgba(176, 91, 255, 0.4), inset 0 0 10px rgba(176, 91, 255, 0.2);
+  transition: all 0.3s ease;
+  letter-spacing: 2px;
+  overflow: hidden;
+
+  &:hover {
+    color: #000;
+    background: #39ff14;
+    border-color: #39ff14;
+    box-shadow: 0 0 20px #39ff14, inset 0 0 10px #39ff14;
+  }
+}
+
+@utility creepy-card {
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  border: 1px solid rgba(138, 43, 226, 0.4);
+  background: linear-gradient(180deg, rgba(20, 5, 35, 0.8) 0%, rgba(5, 0, 10, 0.9) 100%);
+
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: #39ff14;
+    box-shadow: 0 10px 30px -5px rgba(57, 255, 20, 0.3);
+  }
+}
+
+@utility acid-drop {
+  position: absolute;
+  background: #39ff14;
+  width: 2px;
+  height: 20px;
+  box-shadow: 0 0 8px 2px rgba(57, 255, 20, 0.6);
+  opacity: 0;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-50px); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* Keyframes para el efecto de estática/glitch en la imagen */
+@keyframes glitch {
+  0% { transform: translate(0); filter: hue-rotate(0deg); }
+  25% { transform: translate(-2px, 1px); filter: hue-rotate(90deg) brightness(1.2); }
+  50% { transform: translate(2px, -1px); filter: hue-rotate(180deg); }
+  75% { transform: translate(-1px, -2px); filter: hue-rotate(270deg) contrast(1.5); }
+  100% { transform: translate(1px, 2px); filter: hue-rotate(360deg); }
+}
+
+/* Clases de branding para Orbit crew */
+.font-orbit { font-family: var(--font-family-now); text-transform: none; }
+.font-subtext { font-family: var(--font-family-vt323); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ELIMINAR LA MARCA DE AGUA ROJA DE CLERK PARA SIEMPRE */
+.clerk-watermark { display: none !important; opacity: 0 !important; }
+
+/* =========================================================
+   LA OPCIÓN NUCLEAR: ANIQUILACIÓN DE CLERK Y ARREGLO DE TEXTOS
+========================================================= */
+
+/* 1. Destruir Development Mode y marca de agua (Clases internas exactas) */
+.cl-internal-b3fm6y,
+.cl-internal-1x6p8q8,
+.cl-internal-130ndky,
+.cl-watermark,
+.cl-footer,
+.cl-userButtonPopoverFooter,
+[class*="cl-internal-"] > a[href*="clerk.com"],
+[class*="cl-internal-"] > a[href*="clerk.dev"],
+a[href*="clerk.com"],
+div[style*="position: fixed"][style*="bottom"] { 
+  display: none !important; 
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -9999 !important;
+}
+
+/* 2. FORZAR TEXTOS INTERNOS: Convierte cualquier texto secundario o 'oscuro' en blanco o morado claro */
+/* Aplica para Mi Cuenta (UserProfile) */
+.cl-profilePage p,
+.cl-profilePage span,
+.cl-profilePage h1,
+.cl-profilePage h2,
+.cl-profilePage h3,
+.cl-profileSectionContent,
+.cl-profileSectionContent *,
+.cl-accordionHeader,
+.cl-accordionContent,
+.cl-userPreviewSecondaryIdentifier {
+    color: white !important;
+}
+
+/* Las descripciones secundarias (como el navegador que usas, etc) en morado claro */
+.cl-profilePage p,
+.cl-scrollBox p {
+    color: #d8b4fe !important;
+}
+
+/* 3. MENÚ DESPLEGABLE (UserButtonPopover): FORZAR LETRAS Y ICONOS NEÓN SIEMPRE */
+.cl-userButtonPopoverActionButtonText,
+.cl-userButtonPopoverActionButtonIconBox,
+.cl-userButtonPopoverActionButtonText *,
+.cl-userButtonPopoverActionButtonIconBox * {
+    color: #39ff14 !important;
+}
+
+/* 4. ARREGLO DE BORDES RECORTADOS EN LOGIN (Forzar margen y overflow) */
+.cl-card {
+    margin: 1rem !important;
+    overflow: visible !important;
+}
