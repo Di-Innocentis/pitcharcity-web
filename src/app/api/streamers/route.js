@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 // 1. LISTA OFICIAL DE SOBREVIVIENTES
 const ROSTER = {
   twitch: ["leshliepink", "rubynavx", "arvintach"],
-  kick: ["alejandroreport", "thealex30", "ElPipeBro", "Marchelo9", "Rubynavx", "Centis"]
+  kick: ["alejandroreport", "thealex30", "ElPipeBro", "Marchelo9", "Rubynavx", "Centis", "RinzlerVoid"]
 };
 
 // --- AUTENTICACIÓN TWITCH ---
